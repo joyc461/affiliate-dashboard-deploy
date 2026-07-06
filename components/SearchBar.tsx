@@ -18,7 +18,7 @@ export interface SearchBarProps {
 export function SearchBar({
   value,
   onChange,
-  placeholder = "Search affiliates or campaigns......",
+  placeholder = "Search affiliates or campaigns.......",
   className,
 }: SearchBarProps) {
   return (
