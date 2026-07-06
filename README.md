@@ -40,6 +40,7 @@ We generate and load the 10,000-row dataset once on the server in `app/page.tsx`
 ### How did you make 10,000 rows stay smooth? What did you measure, and what did you deliberately not do?
 
 We kept 10,000 rows smooth by using TanStack Virtual to only render the ~25 rows visible on screen instead of attaching 10,000 DOM nodes. We paired the global search box with `useDeferredValue` so typing never lags while the table updates in the background. We have avoided pagination to fulfill the requirement of showing all rows.
+
 ---
 
 ## 3. Authorization
