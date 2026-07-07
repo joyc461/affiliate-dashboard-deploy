@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useDeferredValue, useCallback } from "react";
+import React, { useState, useDeferredValue, useCallback, useMemo } from "react";
 import { AffiliateRow, Role } from "@/lib/affiliate-data";
 import { useAffiliateData } from "@/hooks/useAffiliateData";
 import { TableToolbar } from "./TableToolbar";
@@ -25,6 +25,18 @@ export function Dashboard({ initialData }: DashboardProps) {
   // Apply Row-Level Security (RLS) rules
   const authorizedRows = useAffiliateData(initialData, role);
 
+  // Apply global search filter on authorized rows
+  const filteredRows = useMemo(() => {
+    const query = deferredSearchQuery.toLowerCase().trim();
+    if (!query) return authorizedRows;
+
+    return authorizedRows.filter((row) => {
+      const affiliate = String(row.affiliate || "").toLowerCase();
+      const campaign = String(row.campaign || "").toLowerCase();
+      return affiliate.includes(query) || campaign.includes(query);
+    });
+  }, [authorizedRows, deferredSearchQuery]);
+
   const handleResetFilters = useCallback(() => {
     setSearchQuery("");
   }, []);
@@ -34,16 +46,16 @@ export function Dashboard({ initialData }: DashboardProps) {
       <TableToolbar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
-        filteredCount={authorizedRows.length}
+        filteredCount={filteredRows.length}
         totalCount={initialData.length}
         role={role}
         setRole={setRole}
       />
 
-      <SummaryBar rows={authorizedRows} role={role} />
+      <SummaryBar rows={filteredRows} role={role} />
 
       <DataTable
-        data={authorizedRows}
+        data={filteredRows}
         role={role}
         globalFilter={deferredSearchQuery}
         onResetFilters={handleResetFilters}
