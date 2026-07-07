@@ -136,7 +136,7 @@ export function DataTable({ data, role, globalFilter = "", onResetFilters }: Dat
           {/* Virtual scroll container */}
           <div
             ref={tableContainerRef}
-            className="overflow-auto h-[650px] min-h-[650px] virtual-table-container relative w-full"
+            className="overflow-auto max-h-[650px] min-h-[140px] virtual-table-container relative w-full"
           >
             <table className="w-full text-left border-collapse">
               <thead className="bg-slate-50 dark:bg-slate-800/90 sticky top-0 z-10 border-b border-slate-200 dark:border-slate-700 shadow-2xs">
