@@ -5,7 +5,7 @@ import { Column, ColumnDef } from "@tanstack/react-table";
 import { ArrowUp, ArrowDown, ChevronsUpDown } from "lucide-react";
 import { AffiliateRow } from "@/lib/affiliate-data";
 import { formatCurrency, formatDate, formatNumber } from "@/utils/formatters";
-import { cn } from "@/utils/cn";
+
 
 /**
  * Reusable sortable column header component.
@@ -26,7 +26,7 @@ function DataTableColumnHeader<TData, TValue>({
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return (
-      <div className={cn("font-semibold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400", className)}>
+      <div className={`font-semibold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 ${className ?? ""}`}>
         {title}
       </div>
     );
@@ -38,13 +38,11 @@ function DataTableColumnHeader<TData, TValue>({
     <button
       type="button"
       onClick={column.getToggleSortingHandler()}
-      className={cn(
-        "flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wider transition-colors py-1 px-1.5 -ml-1.5 rounded-md hover:bg-slate-200/60 dark:hover:bg-slate-700/60 cursor-pointer select-none",
-        align === "right" && "ml-auto flex-row-reverse -mr-1.5",
-        align === "center" && "mx-auto",
-        isSorted ? "text-slate-900 dark:text-slate-100 font-bold" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200",
-        className
-      )}
+      className={`flex items-center gap-1.5 font-semibold text-xs uppercase tracking-wider transition-colors py-1 px-1.5 -ml-1.5 rounded-md hover:bg-slate-200/60 dark:hover:bg-slate-700/60 cursor-pointer select-none ${
+        align === "right" ? "ml-auto flex-row-reverse -mr-1.5" : ""
+      } ${align === "center" ? "mx-auto" : ""} ${
+        isSorted ? "text-slate-900 dark:text-slate-100 font-bold" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
+      } ${className ?? ""}`}
       aria-label={`Sort by ${title}. Currently ${
         isSorted === "asc" ? "ascending" : isSorted === "desc" ? "descending" : "unsorted"
       }`}
@@ -73,10 +71,7 @@ function StatusBadge({ status }: { status: AffiliateRow["status"] }) {
 
   return (
     <span
-      className={cn(
-        "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold border capitalize",
-        styles
-      )}
+      className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold border capitalize ${styles ?? ""}`}
     >
       {status}
     </span>
@@ -96,10 +91,7 @@ function RegionBadge({ region }: { region: AffiliateRow["region"] }) {
 
   return (
     <span
-      className={cn(
-        "inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border",
-        styles
-      )}
+      className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${styles ?? ""}`}
     >
       {region}
     </span>
