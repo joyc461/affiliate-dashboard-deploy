@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Search, X } from "lucide-react";
-import { cn } from "@/utils/cn";
 
 export interface SearchBarProps {
   value: string;
@@ -18,11 +17,11 @@ export interface SearchBarProps {
 export function SearchBar({
   value,
   onChange,
-  placeholder = "Search affiliates or campaigns............",
+  placeholder = "Search affiliates or campaigns",
   className,
 }: SearchBarProps) {
   return (
-    <div className={cn("relative flex items-center w-full max-w-md", className)}>
+    <div className={`relative flex items-center w-full max-w-md ${className ?? ""}`}>
       <Search className="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none" />
       <input
         type="text"
