@@ -16,7 +16,7 @@ export default async function DashboardPage() {
                 Affiliate Reports Mini-Dashboard
               </h1>
               <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                High-performance 10,000-row table with real-time global filtering, multi-type sorting, and RBAC role gating.
+                High-performance 10,000-row table with real-time global filtering, multi-type sorting, and role gating.
               </p>
             </div>
           </div>
