@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/utils/cn";
 
 export interface MetricCardProps {
   title: string;
@@ -25,16 +24,13 @@ export function MetricCard({
 }: MetricCardProps) {
   return (
     <div
-      className={cn(
-        "bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs flex items-center justify-between transition-all",
-        className
-      )}
+      className={`bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs flex items-center justify-between transition-all ${className ?? ""}`}
     >
       <div className="space-y-1">
         <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
           {title}
         </p>
-        <p className={cn("text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100", valueClassName)}>
+        <p className={`text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 ${valueClassName ?? ""}`}>
           {value}
         </p>
         {subtitle && (
