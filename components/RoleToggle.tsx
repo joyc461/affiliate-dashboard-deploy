@@ -3,7 +3,6 @@
 import React from "react";
 import { Shield, Eye } from "lucide-react";
 import { Role } from "@/lib/affiliate-data";
-import { cn } from "@/utils/cn";
 
 export interface RoleToggleProps {
   role: Role;
@@ -22,12 +21,11 @@ export function RoleToggle({ role, setRole }: RoleToggleProps) {
       <button
         type="button"
         onClick={() => setRole("admin")}
-        className={cn(
-          "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 cursor-pointer",
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 cursor-pointer ${
           role === "admin"
             ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs border border-slate-200/60 dark:border-slate-700 font-semibold"
             : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50"
-        )}
+        }`}
       >
         <Shield className="w-3.5 h-3.5" />
         <span>Admin</span>
@@ -36,12 +34,11 @@ export function RoleToggle({ role, setRole }: RoleToggleProps) {
       <button
         type="button"
         onClick={() => setRole("viewer")}
-        className={cn(
-          "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 cursor-pointer",
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 cursor-pointer ${
           role === "viewer"
             ? "bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 shadow-xs border border-slate-200/60 dark:border-slate-700 font-semibold"
             : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50"
-        )}
+        }`}
       >
         <Eye className="w-3.5 h-3.5" />
         <span>Viewer (EU Only)</span>
