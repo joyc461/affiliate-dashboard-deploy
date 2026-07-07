@@ -8,3 +8,4 @@ export * from "./TableToolbar";
 export * from "./columns";
 export * from "./DataTable";
 export * from "./Dashboard";
+export * from "./Sidebar";
